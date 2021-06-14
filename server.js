@@ -33,14 +33,14 @@ app.get("/api/:temps", function(req, res) {
   let temps = req.params.temps;
   if (/\d{5,}/.test(temps)) {
     dateInt = parseInt(temps);
-    res.json({ unix: temps, utc: new Date(dateInt).toUTCString() });
+    return res.json({ unix: temps, utc: new Date(dateInt).toUTCString() });
   }
   let dateObject = new Date(temps);
 
   if (dateObject.toString() === "Invalid Date") {
-    res.json({ error: "Invalid Date" });
+    return res.json({ error: "Invalid Date" });
   } else {
-    res.json({ unix: parseInt(dateObject.valueOf()), utc: dateObject.toUTCString() });
+    return res.json({ unix: parseInt(dateObject.valueOf()), utc: dateObject.toUTCString() });
   }
 });
 
