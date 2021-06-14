@@ -33,7 +33,7 @@ app.get("/api/:temps", function(req, res) {
   let temps = req.params.temps;
   if (/\d{5,}/.test(temps)) {
     dateInt = parseInt(temps);
-    return res.json({ unix: temps, utc: new Date(dateInt).toUTCString() });
+    return res.json({ unix: dateInt, utc: new Date(dateInt).toUTCString() });
   }
   let dateObject = new Date(temps);
 
